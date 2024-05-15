@@ -1,0 +1,12 @@
+.dialogues {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
+
+.dialogueItems {
+    background-color: burlywood;
+}
+
+.messages {
+    background-color: #772929;
+}
