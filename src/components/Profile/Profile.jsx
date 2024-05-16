@@ -5,12 +5,12 @@ import PersonalInfo from './PersonalInfo/PersonalInfo';
 import Posts from './Posts/Posts';
 
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div className={sty.profile}>
             <ProImg />
             <PersonalInfo />
-            <Posts />
+            <Posts posts={props.posts} />
         </div>
     );
 }

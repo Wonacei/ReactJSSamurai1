@@ -7,9 +7,9 @@ import Dialogues from './components/Dialogue/Dialogues';
 import Settings from "./components/Settings/Settings";
 import News from './components/News/News';
 import Music from './components/Music/Music';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
@@ -17,8 +17,8 @@ function App() {
         <Nav />
         <div className='content'>
           <Routes>
-            <Route path='profile' element={<Profile />} />
-            <Route path='dialogues/*' element={<Dialogues />} />
+            <Route path='profile' element={<Profile posts={props.posts} />} />
+            <Route path='dialogues/*' element={<Dialogues dialogues={props.dialogues} messages={props.messages} />} />
             <Route path='settings' element={<Settings />} />
             <Route path='news' element={<News />} />
             <Route path='music' element={<Music />} />
@@ -32,5 +32,7 @@ function App() {
 
   );
 }
+
+
 
 export default App;
