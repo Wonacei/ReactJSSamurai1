@@ -1,8 +1,10 @@
 import React from 'react';
 import sty from './Dialogues.module.css';
+import { DialoguesElements } from './DialoguesElements';
 // import { Link } from 'react-router-dom';
 // import { messagesDB, dialoguesDB } from '../..';
-import dialoguesElements from './dialoguesElements';
+// import DialoguesElements from './DialogusesElements';
+// import messagesItems from './MessagesItems'
 
 
 // let dialoguesDB = [
@@ -35,26 +37,27 @@ import dialoguesElements from './dialoguesElements';
 //     )
 // }
 
-const MessageItem = (props) => {
-    return (
-        <div>{props.message}</div>
-    )
-}
+// const MessageItem = (props) => {
+//     return (
+//         <div>{props.message}</div>
+//     )
+// }
 
 
-let messagesElements = messagesDB.map(m => <MessageItem id={m.id} message={m.message} />)
+// let messagesElements = messagesDB.map(m => <MessageItem id={m.id} message={m.message} />)
 
 const Dialogues = (props) => {
 
     return (
         <div className={sty.dialogues}>
             <div className={sty.dialogueItems}>
-                {dialoguesElements}
+                {/* {dialoguesElements(props.dialogues)} */}
+                <DialoguesElements dialogues={props.dialogues} />
             </div>
 
-            <div className={sty.messages}>
-                {messagesElements}
-            </div>
+            {/* <div className={sty.messages}>
+                {messagesItems(props.messages)}
+            </div> */}
         </div>
     )
 }
