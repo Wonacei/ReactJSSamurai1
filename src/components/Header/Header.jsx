@@ -4,7 +4,7 @@ import sty from './Header.module.css'
 const Header = () => {
   return (
     < header className={sty.header} >
-      <img src='https://avatars.mds.yandex.net/i?id=d905712c8d4bca9dd763e0c8275ab047833470c7-12518569-images-thumbs&n=13' alt='' />
+      <img src="https://png.klev.club/uploads/posts/2024-03/thumbs/png-klev-club-p-molniya-ikonka-png-19.png" alt='Логотип' />
     </header >
   );
 }

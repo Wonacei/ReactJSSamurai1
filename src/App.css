@@ -14,10 +14,24 @@
 
   max-width: 1400px;
   margin: 0 auto;
+  /* background-color: #5fd85d; */
 
   height: 100vh;
 }
 
 .content {
   grid-area: main;
+  border-radius: 10px 10px 0 0;
+  background-color: #5fd85d;
+  padding: 10px;
+}
+
+nav .active {
+  border-radius: 10px;
+  background-color: #f5f371;
+}
+
+.content .active {
+  border-radius: 5px;
+  background-color: #1f289e;
 }

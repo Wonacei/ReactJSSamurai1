@@ -17,8 +17,8 @@ function App(props) {
         <Nav />
         <div className='content'>
           <Routes>
-            <Route path='profile' element={<Profile posts={props.posts} />} />
-            <Route path='dialogues/*' element={<Dialogues dialogues={props.dialogues} messages={props.messages} />} />
+            <Route path='profile' element={<Profile posts={props.states.statesPage} pid={props.states.personalID} addNewPostDB={props.addNewPostDB} />} />
+            <Route path='dialogues/*' element={<Dialogues dialoguesPage={props.states.dialoguesPage} pid={props.states.personalID} addNewMessageDB={props.addNewMessageDB} />} />
             <Route path='settings' element={<Settings />} />
             <Route path='news' element={<News />} />
             <Route path='music' element={<Music />} />

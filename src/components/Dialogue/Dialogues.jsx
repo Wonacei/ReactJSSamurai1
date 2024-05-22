@@ -4,16 +4,23 @@ import DialoguesElements from './DialoguesElements';
 import MessagesItems from './MessagesItems';
 
 const Dialogues = (props) => {
+    let newMessage = React.createRef();
+    let addNewMessage = () => {
+        let text = newMessage.current.value;
+        props.addNewMessageDB(text);
+    }
 
     return (
         <div className={sty.dialogues}>
             <div className={sty.dialogueItems}>
                 {/* {dialoguesElements(props.dialogues)} */}
-                <DialoguesElements dialogues={props.dialogues} />
+                <DialoguesElements dialogues={props.dialoguesPage.dialoguesDB} pid={props.pid} />
             </div>
 
             <div className={sty.messages}>
-                <MessagesItems messages={props.messages} />
+                <MessagesItems messages={props.dialoguesPage.messagesDB} />
+                <input ref={newMessage} type="text" />
+                <button onClick={addNewMessage}>Отправить</button>
             </div>
         </div>
     )

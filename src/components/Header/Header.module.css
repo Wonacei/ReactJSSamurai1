@@ -1,7 +1,12 @@
 .header {
   grid-area: header;
+  padding: 20px;
+
+  border-radius: 0 0 10px 10px;
+  background-color: #5fd85d;
 }
 
 .header img {
-  width: 200px;
+  max-width: 100px;
+  max-height: 100px;
 }
