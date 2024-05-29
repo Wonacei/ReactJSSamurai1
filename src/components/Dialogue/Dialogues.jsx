@@ -4,10 +4,10 @@ import DialoguesElements from './DialoguesElements';
 import MessagesItems from './MessagesItems';
 
 const Dialogues = (props) => {
-    let newMessage = React.createRef();
+    let newMessageText = React.createRef();
     let addNewMessage = () => {
-        let text = newMessage.current.value;
-        props.addNewMessageDB(text);
+        let text = newMessageText.current.value;
+        props.dialoguesPage.addNewMessageDB(text);
     }
 
     return (
@@ -19,7 +19,7 @@ const Dialogues = (props) => {
 
             <div className={sty.messages}>
                 <MessagesItems messages={props.dialoguesPage.messagesDB} />
-                <input ref={newMessage} type="text" />
+                <input ref={newMessageText} type="text" />
                 <button onClick={addNewMessage}>Отправить</button>
             </div>
         </div>

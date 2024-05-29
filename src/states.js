@@ -1,14 +1,31 @@
+// import { rerender } from "./rerender";
 let states = {
-    statesPage: {
+    profilePage: {
         postsDB: [
             { id: '1', pid: 'p00', text: 'Начинаю учить JS', like: '28' },
             { id: '2', pid: 'p02', text: 'ью кровь собаки', like: '3' },
             { id: '3', pid: 'p03', text: 'Я скоро в отпуск!', like: '16' },
             { id: '4', pid: 'p05', text: 'Отдыхаю распластавшись', like: '5' },
             { id: '5', pid: 'p01', text: 'В лето самая жара', like: '99' },
-        ]
+        ],
+        currentValuePost: '',
+        addNewPostDB: (newPost) => {
+            // { states.statesPage.postsDB.lenght + 1 }
+            let newText = { id: '6', pid: 'p00', text: newPost, like: '0' }
+            // debugger;
+            states.profilePage.postsDB.push(newText);
+            states.profilePage.currentValuePost = '';
+            states.rerender(states);
+        },
+        updateCurrentValuePost: (newText) => {
+
+            states.profilePage.currentValuePost = newText;
+            states.rerender(states);
+        },
+
     },
     dialoguesPage: {
+
         dialoguesDB: [
             { pid: 'p01', id: '02' },
             { pid: 'p05', id: '01' },
@@ -28,7 +45,12 @@ let states = {
             { id: '9', message: 'врунишка' },
             { id: '10', message: 'врунишка' },
             { id: '11', message: 'byeeeee' },
-        ]
+        ],
+        addNewMessageDB: (newMessage) => {
+            let newText = { id: '12', message: newMessage }
+            states.dialoguesPage.messagesDB.push(newText);
+            states.rerender(states);
+        }
     },
     personalID: {
         p00: { PID: 'p00', name: 'Wonacei', avatarSrc: 'https://pixelbox.ru/wp-content/uploads/2021/11/black-white-avatars-steam-pixelbox.ru-27.jpg' },
@@ -37,16 +59,40 @@ let states = {
         p03: { PID: 'p03', name: 'Jojobo', avatarSrc: 'https://android-obzor.com/wp-content/uploads/2022/02/1-6.jpg' },
         p04: { PID: 'p04', name: 'Luciliy', avatarSrc: 'https://sneg.top/uploads/posts/2023-06/1687985323_sneg-top-p-krutie-avatarki-zaitsev-krasivo-3.jpg' },
         p05: { PID: 'p05', name: 'Gargantua', avatarSrc: 'https://furman.top/uploads/posts/2023-08/1692101111_furman-top-p-zastavki-na-telefon-uzhasi-vkontakte-13.jpg' }
+    },
+    subscruber: (observer) => {
+        states.rerender = observer
+    },
+    rerender: () => {
+        console.log('asdasdasd')
     }
-
 };
-export let addNewPostDB = (newPost) => {
-    // { states.statesPage.postsDB.lenght + 1 }
-    let newText = { id: '6', pid: 'p00', text: { newPost }, like: '0' }
-    states.statesPage.postsDB.push(newText);
-}
-export let addNewMessageDB = (newMessage) => {
-    let newText = { id: '12', text: { newMessage } }
-    states.dialoguesPage.messagesDB.push(newText);
-}
+// export let addNewPostDB = (newPost) => {
+//     // { states.statesPage.postsDB.lenght + 1 }
+//     let newText = { id: '6', pid: 'p00', text: newPost, like: '0' }
+//     // debugger;
+//     states.profilePage.postsDB.push(newText);
+//     states.profilePage.currentValuePost = '';
+//     rerender(states);
+// }
+// export let updateCurrentValuePost = (newText) => {
+
+//     states.profilePage.currentValuePost = newText;
+//     rerender(states);
+// }
+// export let addNewMessageDB = (newMessage) => {
+//     let newText = { id: '12', text: { newMessage } }
+//     states.dialoguesPage.messagesDB.push(newText);
+// }
+// import React from 'react'
+
+// let rerender = () => {
+//     console.log('asdasdasd')
+
+// }
+
+// export let subscruber = (observer) => {
+//     rerender = observer
+// }
+
 export default states;

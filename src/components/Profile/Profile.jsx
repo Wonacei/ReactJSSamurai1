@@ -10,7 +10,10 @@ const Profile = (props) => {
         <div className={sty.profile}>
             <ProImg />
             <PersonalInfo />
-            <Posts posts={props.posts.postsDB} pid={props.pid} addNewPostDB={props.addNewPostDB} />
+            <Posts
+                profilePage={props.profilePage}
+                pid={props.pid}
+            />
         </div>
     );
 }

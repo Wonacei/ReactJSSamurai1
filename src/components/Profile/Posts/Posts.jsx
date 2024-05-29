@@ -3,18 +3,29 @@ import sty from './Posts.module.css';
 import Post from './Post/Post';
 
 const Posts = (props) => {
-    let postsElements = props.posts.map(p => <Post message={p.text} like={p.like} key={p.id} pid={p.pid} author={props.pid[p.pid]} />)
+    let postsElements = props.profilePage.postsDB.map(p => <Post message={p.text} like={p.like} key={p.id} pid={p.pid} author={props.pid[p.pid]} />)
     let postNewElement = React.createRef();
     let addPost = () => {
-        let text = postNewElement.current.value;
+        // let text = postNewElement.current.value;
+        let text = props.profilePage.currentValuePost;
         // alert(text);
-        props.addNewPostDB(text);
-    }
+        // debugger;
+        props.profilePage.addNewPostDB(text);
+    };
+    let activeTextPost = () => {
+
+        // let newText = props.currentValuePost;
+        props.profilePage.updateCurrentValuePost(postNewElement.current.value);
+        // console.log(postNewElement.current.value)
+
+    };
+
 
     return (
         <div className={sty.posts}>
             <div className={sty.posting}>
-                <textarea ref={postNewElement}></textarea>
+                <textarea ref={postNewElement} value={props.profilePage.currentValuePost} onChange={activeTextPost}
+                ></textarea>
                 <button onClick={addPost}>Пости</button>
             </div>
             <div className={sty.postArea}>
@@ -25,3 +36,4 @@ const Posts = (props) => {
 }
 
 export default Posts;
+
