@@ -10,12 +10,12 @@ const Posts = (props) => {
         let text = props.profilePage.currentValuePost;
         // alert(text);
         // debugger;
-        props.profilePage.addNewPostDB(text);
+        props.addNewPostDB(text);
     };
     let activeTextPost = () => {
 
         // let newText = props.currentValuePost;
-        props.profilePage.updateCurrentValuePost(postNewElement.current.value);
+        props.updateCurrentValuePost(postNewElement.current.value);
         // console.log(postNewElement.current.value)
 
     };

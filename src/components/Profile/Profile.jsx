@@ -13,6 +13,8 @@ const Profile = (props) => {
             <Posts
                 profilePage={props.profilePage}
                 pid={props.pid}
+                addNewPostDB={props.addNewPostDB}
+                updateCurrentValuePost={props.updateCurrentValuePost}
             />
         </div>
     );

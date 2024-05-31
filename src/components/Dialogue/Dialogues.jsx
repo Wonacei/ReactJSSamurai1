@@ -7,7 +7,7 @@ const Dialogues = (props) => {
     let newMessageText = React.createRef();
     let addNewMessage = () => {
         let text = newMessageText.current.value;
-        props.dialoguesPage.addNewMessageDB(text);
+        props.addNewMessageDB(text);
     }
 
     return (

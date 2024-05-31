@@ -17,14 +17,20 @@ function App(props) {
         <Nav />
         <div className='content'>
           <Routes>
+
             <Route path='profile' element={<Profile
-              profilePage={props.states.profilePage}
-              pid={props.states.personalID}
+              profilePage={props.store.getStates().profilePage}
+              pid={props.store.getStates().personalID}
+              addNewPostDB={props.store.addNewPostDB.bind(props.store)}
+              updateCurrentValuePost={props.store.updateCurrentValuePost.bind(props.store)}
             />} />
+
             <Route path='dialogues/*' element={<Dialogues
-              dialoguesPage={props.states.dialoguesPage}
-              pid={props.states.personalID}
+              dialoguesPage={props.store.getStates().dialoguesPage}
+              pid={props.store.getStates().personalID}
+              addNewMessageDB={props.store.addNewMessageDB.bind(props.store)}
             />} />
+
             <Route path='settings' element={<Settings />} />
             <Route path='news' element={<News />} />
             <Route path='music' element={<Music />} />

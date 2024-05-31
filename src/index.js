@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import states from './states'
+import store from './states'
 // import { addNewPostDB, addNewMessageDB, updateCurrentValuePost, subscruber } from './states';
 
 // import { renderSite } from './rerender';
@@ -31,15 +31,32 @@ export const renderSite = (props) => {
 
     root.render(
         <React.StrictMode>
-            <App states={props} />
+            <App store={props} />
             {/* <App states={props} addNewPostDB={addNewPostDB} addNewMessageDB={addNewMessageDB} updateCurrentValuePost={updateCurrentValuePost} /> */}
         </React.StrictMode>
     );
 }
 
 
-renderSite(states);
-states.subscruber(renderSite);
+renderSite(store);
+store.subscruber(renderSite);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.data = store;
+
+
 // subscruber(renderSite);
 
 
