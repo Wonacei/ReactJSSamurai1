@@ -1,4 +1,10 @@
-// import { rerender } from "./rerender";
+const ADD_NEW_POST_DB = "ADD-NEW-POST-DB"
+const UPDATE_CURRENT_VALUE_POST = "UPDATE-CURRENT-VALUE-POST"
+const ADD_NEW_MESSAGE_DB = "ADD-NEW-MESSAGE-DB"
+const UPDATE_CURRENT_VALUE_MESSAGE = "UPDATE-CURRENT-VALUE-MESSAGE"
+
+
+
 let store = {
     _states: {
         profilePage: {
@@ -9,7 +15,7 @@ let store = {
                 { id: '4', pid: 'p05', text: 'Отдыхаю распластавшись', like: '5' },
                 { id: '5', pid: 'p01', text: 'В лето самая жара', like: '99' },
             ],
-            currentValuePost: '',
+            currentValuePost: 'Мой первый тестовый пост',
 
         },
         dialoguesPage: {
@@ -34,6 +40,8 @@ let store = {
                 { id: '10', message: 'врунишка' },
                 { id: '11', message: 'byeeeee' },
             ],
+            currentValueMessage: 'Пустая строка',
+
 
         },
         personalID: {
@@ -46,26 +54,12 @@ let store = {
         },
 
     },
-    addNewPostDB(newPost) {
-        // { states.statesPage.postsDB.lenght + 1 }
-        let newText = { id: '6', pid: 'p00', text: newPost, like: '0' }
-        // debugger;
-        this._states.profilePage.postsDB.push(newText);
-        this._states.profilePage.currentValuePost = '';
-        store.rerender(store);
-    },
-    updateCurrentValuePost(newText) {
 
-        this._states.profilePage.currentValuePost = newText;
-        store.rerender(store);
-    },
-
-
-    addNewMessageDB(newMessage) {
-        let newText = { id: '12', message: newMessage }
-        this._states.dialoguesPage.messagesDB.push(newText);
-        this.rerender(store);
-    },
+    // addNewMessageDB(newMessage) {
+    //     let newText = { id: '12', message: newMessage }
+    //     this._states.dialoguesPage.messagesDB.push(newText);
+    //     this.rerender(store);
+    // },
 
 
     subscruber(observer) {
@@ -77,35 +71,58 @@ let store = {
 
     getStates() {
         return this._states;
+    },
+
+    dispatch(action) {
+        // if (action.type === "ADD-NEW-POST-DB") {
+        if (action.type === ADD_NEW_POST_DB) {
+            let newText = { id: this._states.profilePage.postsDB.length + 1, pid: 'p00', text: this._states.profilePage.currentValuePost, like: '0' }
+            this._states.profilePage.postsDB.push(newText);
+            this._states.profilePage.currentValuePost = '';
+            this.rerender(store);
+            // } else if (action.type === "UPDATE-CURRENT-VALUE-POST") {
+        } else if (action.type === UPDATE_CURRENT_VALUE_POST) {
+            this._states.profilePage.currentValuePost = action.newText;
+            this.rerender(store);
+        } else if (action.type === ADD_NEW_MESSAGE_DB) {
+            let newText = { id: this._states.dialoguesPage.messagesDB.length + 1, message: action.newMessage }
+            this._states.dialoguesPage.messagesDB.push(newText);
+            this._states.dialoguesPage.currentValueMessage = ""
+            this.rerender(store);
+
+        } else if (action.type === UPDATE_CURRENT_VALUE_MESSAGE) {
+            this._states.dialoguesPage.currentValueMessage = action.newText;
+            this.rerender(store);
+        }
     }
 }
 
-// export let addNewPostDB = (newPost) => {
-//     // { states.statesPage.postsDB.lenght + 1 }
-//     let newText = { id: '6', pid: 'p00', text: newPost, like: '0' }
-//     // debugger;
-//     states.profilePage.postsDB.push(newText);
-//     states.profilePage.currentValuePost = '';
-//     rerender(states);
+// export const addPostActionCreator = () => {
+//     return { type: "ADD-NEW-POST-DB"}
 // }
-// export let updateCurrentValuePost = (newText) => {
+export const addPostActionCreator = (text) => {
+    return { type: ADD_NEW_POST_DB, newPost: text }
+}
 
-//     states.profilePage.currentValuePost = newText;
-//     rerender(states);
-// }
-// export let addNewMessageDB = (newMessage) => {
-//     let newText = { id: '12', text: { newMessage } }
-//     states.dialoguesPage.messagesDB.push(newText);
-// }
-// import React from 'react'
-
-// let rerender = () => {
-//     console.log('asdasdasd')
-
+// export const currentValuePostActionCreator = (text) => {
+//     return { type: "UPDATE-CURRENT-VALUE-POST", newText: text }
+// return { type: "UPDATE-CURRENT-VALUE-POST", newText: postNewElement.current.value }
 // }
 
-// export let subscruber = (observer) => {
-//     rerender = observer
-// }
 
+export const currentValuePostActionCreator = (text) => {
+    return { type: UPDATE_CURRENT_VALUE_POST, newText: text }
+    // return { type: "UPDATE-CURRENT-VALUE-POST", newText: postNewElement.current.value }
+}
+
+export const addNewMessageDBActionCreator = (text) => {
+    return { type: ADD_NEW_MESSAGE_DB, newMessage: text }
+    // return { type: "UPDATE-CURRENT-VALUE-POST", newText: postNewElement.current.value }
+}
+
+export const currentValueMessageActionCreator = (text) => {
+    return { type: UPDATE_CURRENT_VALUE_MESSAGE, newText: text }
+    // return { type: "UPDATE-CURRENT-VALUE-POST", newText: postNewElement.current.value }
+}
+// 
 export default store;

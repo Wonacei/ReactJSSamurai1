@@ -21,14 +21,13 @@ function App(props) {
             <Route path='profile' element={<Profile
               profilePage={props.store.getStates().profilePage}
               pid={props.store.getStates().personalID}
-              addNewPostDB={props.store.addNewPostDB.bind(props.store)}
-              updateCurrentValuePost={props.store.updateCurrentValuePost.bind(props.store)}
+              dispatch={props.store.dispatch.bind(props.store)}
             />} />
 
             <Route path='dialogues/*' element={<Dialogues
               dialoguesPage={props.store.getStates().dialoguesPage}
               pid={props.store.getStates().personalID}
-              addNewMessageDB={props.store.addNewMessageDB.bind(props.store)}
+              dispatch={props.store.dispatch.bind(props.store)}
             />} />
 
             <Route path='settings' element={<Settings />} />

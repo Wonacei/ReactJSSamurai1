@@ -4,7 +4,6 @@ import ProImg from './ProIMG/ProIMG';
 import PersonalInfo from './PersonalInfo/PersonalInfo';
 import Posts from './Posts/Posts';
 
-
 const Profile = (props) => {
     return (
         <div className={sty.profile}>
@@ -13,8 +12,7 @@ const Profile = (props) => {
             <Posts
                 profilePage={props.profilePage}
                 pid={props.pid}
-                addNewPostDB={props.addNewPostDB}
-                updateCurrentValuePost={props.updateCurrentValuePost}
+                dispatch={props.dispatch}
             />
         </div>
     );
