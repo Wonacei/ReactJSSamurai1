@@ -2,33 +2,21 @@ import React from 'react';
 import sty from './Dialogues.module.css';
 import DialoguesElements from './DialoguesElements';
 import MessagesItems from './MessagesItems';
-import { addNewMessageDBActionCreator, currentValueMessageActionCreator } from '../../states';
 
 const Dialogues = (props) => {
     let newMessageText = React.createRef();
     let changeMessageText = () => {
         let newText = newMessageText.current.value
-        props.dispatch(currentValueMessageActionCreator(newText))
-        // props.dialoguesPage.currentValueMessage = newText
-        // console.log(newText)
+        props.changeMessageText(newText);
     }
-    // let activeTextMessage = () => {
-    //     props.dispatch(currentValueMessageActionCreator())
-    // }
     let addNewMessage = () => {
-        // debugger;
         let text = newMessageText.current.value;
-        props.dispatch(addNewMessageDBActionCreator(text));
-        // debugger;
-
-        // console.log(text)
-
+        props.addNewMessage(text);
     }
-
+    // debugger;
     return (
         <div className={sty.dialogues}>
             <div className={sty.dialogueItems}>
-                {/* {dialoguesElements(props.dialogues)} */}
                 <DialoguesElements dialogues={props.dialoguesPage.dialoguesDB} pid={props.pid} />
             </div>
 

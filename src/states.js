@@ -1,9 +1,5 @@
-const ADD_NEW_POST_DB = "ADD-NEW-POST-DB"
-const UPDATE_CURRENT_VALUE_POST = "UPDATE-CURRENT-VALUE-POST"
-const ADD_NEW_MESSAGE_DB = "ADD-NEW-MESSAGE-DB"
-const UPDATE_CURRENT_VALUE_MESSAGE = "UPDATE-CURRENT-VALUE-MESSAGE"
-
-
+import { dialogueReducer } from "./redux/dialoguesPage-reducer"
+import { profileReducer } from "./redux/profilePage-reducer"
 
 let store = {
     _states: {
@@ -41,8 +37,6 @@ let store = {
                 { id: '11', message: 'byeeeee' },
             ],
             currentValueMessage: 'Пустая строка',
-
-
         },
         personalID: {
             p00: { PID: 'p00', name: 'Wonacei', avatarSrc: 'https://pixelbox.ru/wp-content/uploads/2021/11/black-white-avatars-steam-pixelbox.ru-27.jpg' },
@@ -52,15 +46,7 @@ let store = {
             p04: { PID: 'p04', name: 'Luciliy', avatarSrc: 'https://sneg.top/uploads/posts/2023-06/1687985323_sneg-top-p-krutie-avatarki-zaitsev-krasivo-3.jpg' },
             p05: { PID: 'p05', name: 'Gargantua', avatarSrc: 'https://furman.top/uploads/posts/2023-08/1692101111_furman-top-p-zastavki-na-telefon-uzhasi-vkontakte-13.jpg' }
         },
-
     },
-
-    // addNewMessageDB(newMessage) {
-    //     let newText = { id: '12', message: newMessage }
-    //     this._states.dialoguesPage.messagesDB.push(newText);
-    //     this.rerender(store);
-    // },
-
 
     subscruber(observer) {
         store.rerender = observer
@@ -74,55 +60,9 @@ let store = {
     },
 
     dispatch(action) {
-        // if (action.type === "ADD-NEW-POST-DB") {
-        if (action.type === ADD_NEW_POST_DB) {
-            let newText = { id: this._states.profilePage.postsDB.length + 1, pid: 'p00', text: this._states.profilePage.currentValuePost, like: '0' }
-            this._states.profilePage.postsDB.push(newText);
-            this._states.profilePage.currentValuePost = '';
-            this.rerender(store);
-            // } else if (action.type === "UPDATE-CURRENT-VALUE-POST") {
-        } else if (action.type === UPDATE_CURRENT_VALUE_POST) {
-            this._states.profilePage.currentValuePost = action.newText;
-            this.rerender(store);
-        } else if (action.type === ADD_NEW_MESSAGE_DB) {
-            let newText = { id: this._states.dialoguesPage.messagesDB.length + 1, message: action.newMessage }
-            this._states.dialoguesPage.messagesDB.push(newText);
-            this._states.dialoguesPage.currentValueMessage = ""
-            this.rerender(store);
-
-        } else if (action.type === UPDATE_CURRENT_VALUE_MESSAGE) {
-            this._states.dialoguesPage.currentValueMessage = action.newText;
-            this.rerender(store);
-        }
+        this._states.profilePage = profileReducer(action, this._states.profilePage)
+        this._states.dialoguesPage = dialogueReducer(action, this._states.dialoguesPage)
+        this.rerender(store);
     }
 }
-
-// export const addPostActionCreator = () => {
-//     return { type: "ADD-NEW-POST-DB"}
-// }
-export const addPostActionCreator = (text) => {
-    return { type: ADD_NEW_POST_DB, newPost: text }
-}
-
-// export const currentValuePostActionCreator = (text) => {
-//     return { type: "UPDATE-CURRENT-VALUE-POST", newText: text }
-// return { type: "UPDATE-CURRENT-VALUE-POST", newText: postNewElement.current.value }
-// }
-
-
-export const currentValuePostActionCreator = (text) => {
-    return { type: UPDATE_CURRENT_VALUE_POST, newText: text }
-    // return { type: "UPDATE-CURRENT-VALUE-POST", newText: postNewElement.current.value }
-}
-
-export const addNewMessageDBActionCreator = (text) => {
-    return { type: ADD_NEW_MESSAGE_DB, newMessage: text }
-    // return { type: "UPDATE-CURRENT-VALUE-POST", newText: postNewElement.current.value }
-}
-
-export const currentValueMessageActionCreator = (text) => {
-    return { type: UPDATE_CURRENT_VALUE_MESSAGE, newText: text }
-    // return { type: "UPDATE-CURRENT-VALUE-POST", newText: postNewElement.current.value }
-}
-// 
 export default store;
